@@ -14,22 +14,32 @@ public class ToyView {
 
     public void displayMenu() {
         System.out.println("1. Добавить игрушку");
-        System.out.println("2. Розыгрыш игрушки");
-        System.out.println("3. Выход");
+        System.out.println("2. Добавить игрушки списком");
+        System.out.println("3. Розыгрыш игрушки");
+        System.out.println("4. Выход");
     }
 
     public void processInput(int choice) {
         switch (choice) {
             case 1:
                 // Запросить данные для новой игрушки
-                Scanner scanner = new Scanner(System.in);
+                Scanner scanner1 = new Scanner(System.in);
                 System.out.println("Введите имя игрушки:");
-                String name = scanner.nextLine();
-                System.out.println("Введите вес игрушки:");
-                double weight = scanner.nextDouble();
+                String name = scanner1.nextLine();
+                System.out.println("Введите вес игрушки в процентах (от 0 до 100):");
+                double weight = scanner1.nextDouble();
                 controller.addToy(name, weight);
                 break;
             case 2:
+                // Добавление игрушек списком
+                Scanner scanner2 = new Scanner(System.in);
+                System.out.println("Введите имена игрушек через пробел:");
+                String names = scanner2.nextLine();
+                System.out.println("Введите веса игрушек через пробел:");
+                String weights = scanner2.nextLine();
+                controller.addMultipleToys(names, weights);
+                break;
+            case 3:
                 // Розыгрыш игрушки
                 Toy toy = controller.dispenseToy();
                 if (toy != null) {
@@ -38,7 +48,7 @@ public class ToyView {
                     System.out.println("Игрушки закончились");
                 }
                 break;
-            case 3:
+            case 4:
                 // Выход из программы
                 System.exit(0);
                 break;
