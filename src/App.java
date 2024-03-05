@@ -16,5 +16,6 @@ public class App {
             int choice = scanner.nextInt();
             view.processInput(choice);
         }
+        controller.closeFileWriter();
     }
 }
